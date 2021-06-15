@@ -1,22 +1,29 @@
-import React from 'react'
-import { Button, Container, Dropdown, Menu } from 'semantic-ui-react'
+import React, {useState} from 'react'
+import { NavLink } from 'react-router-dom'
+import { Container, Menu } from 'semantic-ui-react'
+import SignedIn from './SignedIn'
+import SignedOut from './SignedOut'
 
 export default function () {
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    function handleSignOut() {
+        setIsAuthenticated(false)
+    }
+
+    function handleSignIn() {
+        setIsAuthenticated(true)
+    }
+
     return (
         <div>
             <Menu inverted size='medium' >
                 <Container>
-                    <Menu.Item
-                        name='home'
-                    />
+                    <Menu.Item as={NavLink} to="/jobadvertisements" name='home'/>
+
+                    <Menu.Item as={NavLink} to="/admin/verifyjobadvertisement">İlan onayla</Menu.Item>
 
                     <Menu.Menu position='right'>
-                        <Menu.Item>
-                            <Button primary>Sign Up</Button>
-                        </Menu.Item>
-                        <Menu.Item>
-                            <Button>Login</Button>
-                        </Menu.Item>
+                        {isAuthenticated?<SignedIn signOut={handleSignOut}/>:<SignedOut signIn={handleSignIn}/>}   
                     </Menu.Menu>
                 </Container>
             </Menu>
