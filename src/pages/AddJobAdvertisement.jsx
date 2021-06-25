@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Formik, ErrorMessage } from 'formik';
-import { Form, SubmitButton, Field } from 'formik-semantic-ui-react';
-import { Container } from 'semantic-ui-react'
+import { Formik, Form } from 'formik';
+import { Button, Container, FormField } from 'semantic-ui-react'
 import CitiesService from '../services/citiesService';
 import JobPositionService from '../services/jobPositionService';
 import WorkTypeService from '../services/workTypeService';
 import WorkingTimeTypeService from '../services/workingTimeTypeService';
 import JobAdvertisementService from '../services/jobAdvertisementService';
 import * as Yup from "yup";
+import KodlamaIoTextArea from '../utilities/customFormControls/KodlamaIoTextArea';
+import KodlamaIoNumberInput from '../utilities/customFormControls/KodlamaIoNumberInput';
+import KodlamaIoSelect from '../utilities/customFormControls/KodlamaIoSelect';
+import KodlamaIoDateInput from '../utilities/customFormControls/KodlamaIoDateInput';
 
 export default function AddJobAdvertisement() {
     const [cities, setCities] = useState([])
@@ -33,17 +36,24 @@ export default function AddJobAdvertisement() {
     }, [])
 
     const initialValues = {
+        cityId:"",
+        jobPositionId:"",
+        workTypeId:"",
+        workingTimeTypeId:"",
+        minSalary:"",
+        maxSalary:"",
+        deadline:"",
+        numberOfPosition:"",
+        jobDescription:""
     };
 
     const validationSchema = Yup.object().shape({
         cityId: Yup.number().required("Şehir seçiniz!"),
         jobDescription: Yup.string().required("İş açıklaması ekleyiniz!"),
-        numberOfPosition: Yup.number().required("Pozisyon sayısı girin!"),
+        numberOfPosition: Yup.number().required("Pozisyon sayısı giriniz!"),
         workTypeId: Yup.number().required("Çalışma şekli seçiniz!"),
         workingTimeTypeId: Yup.number().required("Çalışma saati seçiniz!")
     });
-    const renderError = (message) => <p className="redText">{message}</p>;
-
 
     return (
         <div>
@@ -52,69 +62,23 @@ export default function AddJobAdvertisement() {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={(values) => { addJobAdvertisement(values); }}
+                    onSubmit={(values) => { addJobAdvertisement(values);  }}
                 >
-                    {({ validateField, validateForm, errors, touched}) => (
-                        <Form Form size="large">
+                    <Form className="ui form" Form >
 
-                            <Field name="cityId" as="select" className="my-select" >
-                                <option>Şehir seçiniz</option>
-                                {
-                                    cities.map(city => (
-                                        <option value={city.id}>{city.name}</option>
-                                    ))
-                                }
-                            </Field>
-                            {/* <ErrorMessage name="cityId" render={renderError} /> */}
-                            {errors.cityId || touched.cityId && <div className="redText">{errors.cityId}</div>}
+                        <KodlamaIoSelect fieldName="name" name="cityId" placeholder="Şehir seçiniz" values={cities} />
+                        <KodlamaIoSelect fieldName="name" style={{ marginTop: '0.7em' }} name="jobPositionId" placeholder="Pozisyon Seçiniz" values={jobPositions} />
+                        <KodlamaIoSelect fieldName="type" style={{ marginTop: '0.7em' }} name="workTypeId" placeholder="Çalışma Şekli Seçiniz" values={workTypes} />
+                        <KodlamaIoSelect fieldName="type" style={{ marginTop: '0.7em' }} name="workingTimeTypeId" placeholder="Çalışma Zamanı Seçiniz" values={workingTimeTypes} />
+                        <KodlamaIoNumberInput style={{ marginTop: '0.7em' }} name="minSalary" placeholder="Minimum ücret" />
+                        <KodlamaIoNumberInput style={{ marginTop: '0.7em' }} name="maxSalary" placeholder="Maximum ücret" />
+                        <KodlamaIoDateInput style={{ marginTop: '0.7em' }} name="deadline" placeholder="Son tarih"/>
+                        <KodlamaIoNumberInput style={{ marginTop: '0.7em' }} name="numberOfPosition" placeholder="Pozisyon adedi" />
+                        <KodlamaIoTextArea style={{ marginTop: '0.7em' }} name="jobDescription" placeholder="İş açıklaması" />
 
-                            <Field style={{ marginTop: '0.7em' }} name="jobPositionId" as="select" className="my-select">
-                                <option>Pozisyon Seçiniz</option>
-                                {
-                                    jobPositions.map(jobPosition => (
-                                        <option value={jobPosition.id}>{jobPosition.name}</option>
-                                    ))
-                                }
-                            </Field>
-
-                            <Field style={{ marginTop: '0.7em' }} name="workTypeId" as="select" className="my-select">
-                                <option>Çalışma Şekli Seçiniz</option>
-                                {
-                                    workTypes.map(workType => (
-                                        <option value={workType.id}>{workType.type}</option>
-                                    ))
-                                }
-                            </Field>
-                            {errors.workTypeId || touched.workTypeId && <div className="redText">{errors.workTypeId}</div>}
-
-                            <Field style={{ marginTop: '0.7em' }} name="workingTimeTypeId" as="select" className="my-select">
-                                <option>Çalışma Zamanı Seçiniz</option>
-                                {
-                                    workingTimeTypes.map(workingTimeType => (
-                                        <option value={workingTimeType.id}>{workingTimeType.type}</option>
-                                    ))
-                                }
-                            </Field>
-                            {errors.workingTimeTypeId || touched.workingTimeTypeId && <p className="redText">{errors.workingTimeTypeId}</p>}
-
-                            <Field style={{ marginTop: '0.7em' }} name="minSalary" placeholder="Minimum ücret" as="input" type="number" className="my-select" />
-
-                            <Field style={{ marginTop: '0.7em' }} name="maxSalary" placeholder="Maximum ücret" as="input" type="number" className="my-select" />
-
-                            <Field style={{ marginTop: '0.7em' }} name="deadline" placeholder="Son tarih" as="input" type="date" className="my-select" />
-
-                            <Field style={{ marginTop: '0.7em' }} name="numberOfPosition" placeholder="Pozisyon adedi" as="input" type="number" className="my-select" />
-                            {errors.numberOfPosition || touched.numberOfPosition && <div className="redText">{errors.numberOfPosition}</div>}
-
-                            <Field style={{ marginTop: '0.7em' }} name="jobDescription" placeholder="İş açıklaması" as="textarea" className="my-select" />
-                            {errors.jobDescription || touched.jobDescription && <div className="redText">{errors.jobDescription}</div>}
-
-                            <SubmitButton onClick={()=>{validateField('cityId')}} style={{ marginTop: '0.7em' }} fluid primary>
-                                Ekle
-                            </SubmitButton>
-                            <br />
-                        </Form>
-                    )}
+                        <Button style={{ marginTop: '0.7em' }} type="submit" fluid primary> Ekle </Button>
+                        <br />
+                    </Form>
                 </Formik>
             </Container>
         </div >

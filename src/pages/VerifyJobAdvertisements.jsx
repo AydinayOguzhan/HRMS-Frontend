@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import JobAdvertisementService from '../../services/jobAdvertisementService'
+import JobAdvertisementService from '../services/jobAdvertisementService'
 import { Button, Card } from 'semantic-ui-react'
-import SystemPersonnelService from '../../services/systemPersonnelService';
+import SystemPersonnelService from '../services/systemPersonnelService';
 
 export default function VerifyJobAdvertisements() {
     var dateFormat = require("dateformat");
