@@ -26,7 +26,7 @@ export default function VerifyJobAdvertisements() {
             <Card.Group>
                 {
                     advertisements.map(advertisement =>
-                        <Card fluid>
+                        <Card fluid color={advertisement.approved?"green":"red"}>
                             <Card.Content>
                                 <Card.Header>{advertisement.jobPositionName}</Card.Header>
                                 <Card.Meta><b>Yayınlanma Tarihi:</b> {dateFormat(advertisement.publishDate, "dd/mm/yyyy")} <br /> <b>Son Başvuru Tarihi:</b> {dateFormat(advertisement.deadline, "dd/mm/yyyy")}</Card.Meta>
