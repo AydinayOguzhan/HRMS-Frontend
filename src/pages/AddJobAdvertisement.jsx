@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, Form } from 'formik';
-import { Button, Container, FormField } from 'semantic-ui-react'
+import { Button, Container } from 'semantic-ui-react'
 import CitiesService from '../services/citiesService';
 import JobPositionService from '../services/jobPositionService';
 import WorkTypeService from '../services/workTypeService';

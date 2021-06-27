@@ -1,4 +1,4 @@
-import { FieldArray, useField } from 'formik'
+import { useField } from 'formik'
 import React from 'react'
 import { FormField, Label } from 'semantic-ui-react'
 import { Select } from 'formik-semantic-ui-react';

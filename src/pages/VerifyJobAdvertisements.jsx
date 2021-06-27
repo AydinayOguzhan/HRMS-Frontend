@@ -9,17 +9,16 @@ export default function VerifyJobAdvertisements() {
 
     let systemPersonnelService = new SystemPersonnelService()
 
-    useEffect(() => {
-        let jobAdvertisementService = new JobAdvertisementService()
-        jobAdvertisementService.getAllDetail().then(result => setAdvertisements(result.data.data))
-        console.log(advertisements)
-    }, [])
-
-
     function verifyJobAdvertisement(id,verified){
         systemPersonnelService.verifyJobAdvertisement(id,verified)
         window.location.reload()
     }
+
+    useEffect(() => {
+        let jobAdvertisementService = new JobAdvertisementService()
+        jobAdvertisementService.getAllDetail().then(result => setAdvertisements(result.data.data))
+    }, [])
+ 
 
     return (
         <div>

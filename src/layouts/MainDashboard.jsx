@@ -11,11 +11,11 @@ export default function MainDashboard() {
         <div>
             <Navi />
             <Container fluid className="main">
-                <Route exact path="/admin/verifyjobadvertisement" component={AdminDashboard}/>
+                <Route exact path="/admin/verifyjobadvertisement" component={AdminDashboard} />
 
-                <Route exact path="/" component={JobAdvertisements}/>
-                <Route exact path="/jobadvertisements" component={JobAdvertisements}/>
-                <Route exact path="/jobadvertisement/add" component={AddJobAdvertisement}/>
+                <Route exact path="/" component={JobAdvertisements} />
+                <Route exact path="/jobadvertisements" component={JobAdvertisements} />
+                <Route exact path="/jobadvertisement/add" component={AddJobAdvertisement} />
             </Container>
         </div>
     )

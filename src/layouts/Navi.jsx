@@ -4,7 +4,7 @@ import { Container, Menu } from 'semantic-ui-react'
 import SignedIn from './SignedIn'
 import SignedOut from './SignedOut'
 
-export default function () {
+export default function Navi() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     function handleSignOut() {
         setIsAuthenticated(false)
@@ -16,7 +16,7 @@ export default function () {
 
     return (
         <div>
-            <Menu inverted size='medium' >
+            <Menu inverted size= "large" >
                 <Container>
                     <Menu.Item as={NavLink} to="/jobadvertisements" name='home'/>
 

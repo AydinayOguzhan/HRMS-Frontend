@@ -3,6 +3,7 @@ import { Card, Button, Grid, GridColumn } from 'semantic-ui-react'
 import JobPositions from '../layouts/JobPositions';
 import JobAdvertisementService from '../services/jobAdvertisementService'
 import FavoritesService from '../services/favoritesService';
+import { toast } from "react-toastify";
 
 export default function JobAdvertisements() {
 
@@ -18,6 +19,7 @@ export default function JobAdvertisements() {
 
     function addFavorites(jobAdvertisementId, jobSeekerId) {
         favoritesService.add(jobAdvertisementId, jobSeekerId)
+        toast.success("Favorilere eklendi")
     }
 
     return (
@@ -33,7 +35,7 @@ export default function JobAdvertisements() {
                         <Card.Group>
                             {
                                 activeJobAdvertisements.map(advertisement => (
-                                    <Card color="blue">
+                                    <Card color="blue" key={advertisement.id}>
                                         <Card.Content>
                                             <Card.Header>{advertisement.positionName}</Card.Header>
                                             <Card.Meta>{advertisement.companyName}</Card.Meta>
@@ -48,8 +50,8 @@ export default function JobAdvertisements() {
                                                 <Button basic color='blue'>
                                                     Detaylar
                                                 </Button>
-                                                //TODO: Toastify ekle
-                                                <Button onClick={()=>{addFavorites(advertisement.id, 26)}} basic color='orange'>
+                                                {/* Login işlemlerinden sonra user id bilgisini login yapan kişininkiyle değiştir. */}
+                                                <Button onClick={()=>{addFavorites(advertisement.id,26)}} basic color='orange'>
                                                     Favori
                                                 </Button>
                                             </div>

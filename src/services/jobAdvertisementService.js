@@ -22,7 +22,6 @@ export default class JobAdvertisementService{
                 jobPositionId:props.jobPositionId,
                 maxSalary:props.jobSalary,
                 minSalary:props.minSalary,
-                maxSalary:props.maxSalary,
                 numberOfPosition:props.numberOfPosition,
                 userId:4,
                 workTypeId:props.workTypeId,

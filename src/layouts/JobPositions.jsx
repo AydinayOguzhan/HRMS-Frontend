@@ -12,12 +12,11 @@ export default function JobPositions() {
 
     return (
         <div>
-
             <Table color="blue">
                 <Table.Body>
                     {
                         jobPositions.map(position => (
-                            <Table.Row>
+                            <Table.Row key={position.id}>
                                 <Table.Cell>
                                     <Button fluid basic color="blue">
                                         {position.name}
