@@ -1,6 +1,15 @@
 import axios from 'axios'
 
 export default class JobAdvertisementService{
+
+    getAllByPage(pageNo, pageSize){
+        return axios.get("http://localhost:8080/api/jobadvertisements/getallbypage?pageNo=" + pageNo + "&pageSize=" + pageSize)
+    }
+
+    getTotalPages(pageNo, pageSize){
+        return axios.get("http://localhost:8080/api/jobadvertisements/getTotalPages?pageNo=" + pageNo + "&pageSize=" + pageSize)
+    }
+
     getAllActiveJobAdvertisements(){
         return axios.get("http://localhost:8080/api/jobadvertisements/getallbyisactivetrueandisapprovedtrue")
     }
