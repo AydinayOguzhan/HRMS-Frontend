@@ -13,10 +13,10 @@ export default function JobPositions() {
         jobPositions.getAllJobPositions().then(result => setJobPositions(result.data.data))
     })
     const totalAdvertisements = [
-        { key: '12', value: '12', text: '12' },
-        { key: '21', value: '21', text: '21' },
-        { key: '51', value: '51', text: '51' },
-        { key: '102', value: '102', text: '102' },
+        { key: '10', value: '10', text: '10' },
+        { key: '20', value: '20', text: '20' },
+        { key: '50', value: '50', text: '50' },
+        { key: '100', value: '100', text: '100' },
     ]
 
     const handleCountChange = (event, data) => {

@@ -22,6 +22,7 @@ export default function VerifyJobAdvertisements() {
 
     return (
         <div>
+            <br />
             <Card.Group>
                 {
                     advertisements.map(advertisement =>

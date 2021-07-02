@@ -57,7 +57,7 @@ export default function AddJobAdvertisement() {
 
     return (
         <div>
-            <Container>
+            {/* <Container> */}
                 <h1>İş ilanı ekle</h1>
                 <Formik
                     initialValues={initialValues}
@@ -80,7 +80,7 @@ export default function AddJobAdvertisement() {
                         <br />
                     </Form>
                 </Formik>
-            </Container>
+            {/* </Container> */}
         </div >
     )
 }

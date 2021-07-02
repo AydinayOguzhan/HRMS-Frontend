@@ -14,10 +14,10 @@ export default function JobAdvertisements() {
 
     const [activeJobAdvertisements, setActiveJobAdvertisements] = useState([])
     const [filteredData, setFilteredData] = useState([])
-    
+
     const [totalPages, setTotalPages] = useState()
     const [activePage, setActivePage] = useState(1)
-    const handlePageChange = (e,pageInfo) => {
+    const handlePageChange = (e, pageInfo) => {
         setActivePage(pageInfo.activePage)
     }
 
@@ -25,14 +25,14 @@ export default function JobAdvertisements() {
         favoritesService.add(jobAdvertisementId, jobSeekerId)
         toast.success("Favorilere eklendi")
     }
-    
+
     function handleSearch(event) {
         let value = event.target.value
         let result = []
         result = activeJobAdvertisements.filter((data) => {
             return data.cityName.search(value) != -1 || data.jobPositionName.search(value) != -1
         })
-        setFilteredData(result)    
+        setFilteredData(result)
     }
 
 
@@ -42,29 +42,30 @@ export default function JobAdvertisements() {
             setActiveJobAdvertisements(result.data.data);
             setFilteredData(result.data.data)
         })
-        jobAdvertisementService.getTotalPages(1,jobAdvertisementsCount).then(result=> setTotalPages(result.data.data))
+        jobAdvertisementService.getTotalPages(1, jobAdvertisementsCount).then(result => setTotalPages(result.data.data))
     }, [jobAdvertisementsCount, activePage, totalPages])
 
     return (
         <div>
-            <div>
-                <Input placeholder="search" onChange={(event) => handleSearch(event)} />
-            </div>
+            <br />
             <Grid >
                 <Grid.Row>
-                    <GridColumn width={1}></GridColumn>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={4}>
                         <JobPositions />
                     </Grid.Column>
 
                     <Grid.Column width={12}>
+                        <div className="advertisementSearch">
+                            <Input placeholder="search" size="large" fluid icon="search" onChange={(event) => handleSearch(event)} />
+                        </div>
+                        <br />
                         <Card.Group>
                             {
                                 filteredData.map(advertisement => (
-                                    <Card color="blue" key={advertisement.id}>
+                                    <Card fluid color="blue" key={advertisement.id}>
                                         <Card.Content>
                                             <Card.Header>{advertisement.jobPositionName}</Card.Header>
-                                            <Card.Meta>{advertisement.cityName}</Card.Meta>
+                                            <Card.Meta>{advertisement.companyName}</Card.Meta>
                                             <Card.Description>
                                                 <b>Pozisyon Sayısı:</b> {advertisement.numberOfPosition} <br />
                                                 <b>Yayınlanma Tarihi:</b> {dateFormat(advertisement.publishDate, "dd/mm/yyyy")} <br />
