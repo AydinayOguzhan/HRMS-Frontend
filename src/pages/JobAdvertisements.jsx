@@ -30,7 +30,8 @@ export default function JobAdvertisements() {
         let value = event.target.value
         let result = []
         result = activeJobAdvertisements.filter((data) => {
-            return data.cityName.search(value) != -1 || data.jobPositionName.search(value) != -1
+            return data.cityName.search(value) != -1 || data.jobPositionName.search(value) != -1 || 
+                data.companyName.search(value) != -1
         })
         setFilteredData(result)
     }
