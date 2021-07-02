@@ -4,13 +4,13 @@ import JobPositionService from '../services/jobPositionService'
 import { useDispatch } from "react-redux";
 import { changeCount } from "../store/actions/jobAdvertisementsCount.js"
 
-export default function JobPositions() {
+export default function LeftBar() {
     const [jobPositions, setJobPositions] = useState([])
     const dispatch = useDispatch();
 
     useEffect(() => {
-        let jobPositions = new JobPositionService()
-        jobPositions.getAllJobPositions().then(result => setJobPositions(result.data.data))
+        // let jobPositions = new JobPositionService()
+        // jobPositions.getAllJobPositions().then(result => setJobPositions(result.data.data))
     })
     const totalAdvertisements = [
         { key: '10', value: '10', text: '10' },
@@ -29,7 +29,7 @@ export default function JobPositions() {
                 <Select placeholder='Select Advertisement Count' onChange={handleCountChange} options={totalAdvertisements} />
             </div>
             <br />
-            <Table color="blue">
+            {/* <Table color="blue">
                 <Table.Body>
                     {
                         jobPositions.map(position => (
@@ -43,7 +43,7 @@ export default function JobPositions() {
                         ))
                     }
                 </Table.Body>
-            </Table>
+            </Table> */}
 
 
         </div>

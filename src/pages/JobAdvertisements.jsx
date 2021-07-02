@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Button, Grid, GridColumn, Input, Pagination } from 'semantic-ui-react'
-import JobPositions from '../layouts/JobPositions';
+import LeftBar from '../layouts/LeftBar';
 import JobAdvertisementService from '../services/jobAdvertisementService'
 import FavoritesService from '../services/favoritesService';
 import { toast } from "react-toastify";
@@ -52,12 +52,12 @@ export default function JobAdvertisements() {
             <Grid >
                 <Grid.Row>
                     <Grid.Column width={4}>
-                        <JobPositions />
+                        <LeftBar />
                     </Grid.Column>
 
                     <Grid.Column width={12}>
-                        <div className="advertisementSearch">
-                            <Input placeholder="search" size="large" fluid icon="search" onChange={(event) => handleSearch(event)} />
+                        <div>
+                            <Input placeholder="search in job advertisements" size="large" fluid icon="search" onChange={(event) => handleSearch(event)} />
                         </div>
                         <br />
                         <Card.Group>
