@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table, Select } from 'semantic-ui-react'
-import JobPositionService from '../services/jobPositionService'
+import { Select } from 'semantic-ui-react'
 import { useDispatch } from "react-redux";
 import { changeCount } from "../store/actions/jobAdvertisementsCount.js"
 
 export default function LeftBar() {
-    const [jobPositions, setJobPositions] = useState([])
+    // const [jobPositions, setJobPositions] = useState([])
     const dispatch = useDispatch();
 
     useEffect(() => {

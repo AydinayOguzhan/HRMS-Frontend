@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Button, Grid, GridColumn, Input, Pagination } from 'semantic-ui-react'
+import { Card, Button, Grid, Input, Pagination } from 'semantic-ui-react'
 import LeftBar from '../layouts/LeftBar';
 import JobAdvertisementService from '../services/jobAdvertisementService'
 import FavoritesService from '../services/favoritesService';
 import { toast } from "react-toastify";
 import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
 
 export default function JobAdvertisements() {
     const favoritesService = new FavoritesService()
     var dateFormat = require("dateformat");
-
+    const history = useHistory();
+ 
     const { jobAdvertisementsCount } = useSelector(state => state.jobAdvertisement)
 
     const [activeJobAdvertisements, setActiveJobAdvertisements] = useState([])
     const [filteredData, setFilteredData] = useState([])
 
-    const [totalPages, setTotalPages] = useState()
+    const [totalPages, setTotalPages] = useState(5)
     const [activePage, setActivePage] = useState(1)
     const handlePageChange = (e, pageInfo) => {
         setActivePage(pageInfo.activePage)
@@ -30,8 +32,8 @@ export default function JobAdvertisements() {
         let value = event.target.value
         let result = []
         result = activeJobAdvertisements.filter((data) => {
-            return data.cityName.search(value) != -1 || data.jobPositionName.search(value) != -1 || 
-                data.companyName.search(value) != -1
+            return data.cityName.search(value) !== -1 || data.jobPositionName.search(value) !== -1 || 
+                data.companyName.search(value) !== -1
         })
         setFilteredData(result)
     }
@@ -75,7 +77,7 @@ export default function JobAdvertisements() {
                                         </Card.Content>
                                         <Card.Content extra>
                                             <div className='ui two buttons'>
-                                                <Button basic color='blue'>
+                                                <Button basic color='blue' as={NavLink} to={{pathname:"jobAdvertisement/detail/" , state:{advertisementId:advertisement.id} }}>
                                                     Detaylar
                                                 </Button>
                                                 {/* TODO: Login işlemlerinden sonra user id bilgisini login yapan kişininkiyle değiştir. */}
@@ -96,7 +98,6 @@ export default function JobAdvertisements() {
                 activePage={activePage}
                 onPageChange={handlePageChange}
                 boundaryRange={0}
-                defaultActivePage={1}
                 ellipsisItem={null}
                 firstItem={null}
                 lastItem={null}

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container } from 'semantic-ui-react'
 import JobAdvertisements from '../pages/JobAdvertisements'
 import { Route } from 'react-router'
 import AddJobAdvertisement from '../pages/AddJobAdvertisement'
 import AdminDashboard from './admin/AdminDashboard'
+import JobAdvertisementDetail from '../pages/JobAdvertisementDetail'
 
 export default function MainDashboard() {
     return (
@@ -14,6 +14,7 @@ export default function MainDashboard() {
                 <Route exact path="/" component={JobAdvertisements} />
                 <Route exact path="/jobadvertisements" component={JobAdvertisements} />
                 <Route exact path="/jobadvertisement/add" component={AddJobAdvertisement} />
+                <Route exact path="/jobadvertisement/detail" component={JobAdvertisementDetail} />
             {/* </Container> */}
         </div>
     )

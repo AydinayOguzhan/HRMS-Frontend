@@ -10,12 +10,13 @@ export default class JobAdvertisementService{
         return axios.get("http://localhost:8080/api/jobadvertisements/getTotalPages?pageNo=" + pageNo + "&pageSize=" + pageSize)
     }
 
-    getAllActiveJobAdvertisements(){
-        return axios.get("http://localhost:8080/api/jobadvertisements/getallbyisactivetrueandisapprovedtrue")
-    }
 
     getAllDetail(){
         return axios.get("http://localhost:8080/api/jobadvertisements/getalldetail")
+    }
+
+    getDetailById(jobAdvertisementId){
+        return axios.get("http://localhost:8080/api/jobadvertisements/getdetailbyid?id=" + jobAdvertisementId)
     }
 
     add(props){
