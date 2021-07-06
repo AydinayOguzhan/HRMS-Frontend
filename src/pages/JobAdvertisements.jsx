@@ -11,7 +11,7 @@ export default function JobAdvertisements() {
     const favoritesService = new FavoritesService()
     var dateFormat = require("dateformat");
     const history = useHistory();
- 
+
     const { jobAdvertisementsCount } = useSelector(state => state.jobAdvertisement)
 
     const [activeJobAdvertisements, setActiveJobAdvertisements] = useState([])
@@ -32,7 +32,7 @@ export default function JobAdvertisements() {
         let value = event.target.value
         let result = []
         result = activeJobAdvertisements.filter((data) => {
-            return data.cityName.search(value) !== -1 || data.jobPositionName.search(value) !== -1 || 
+            return data.cityName.search(value) !== -1 || data.jobPositionName.search(value) !== -1 ||
                 data.companyName.search(value) !== -1
         })
         setFilteredData(result)
@@ -59,7 +59,9 @@ export default function JobAdvertisements() {
 
                     <Grid.Column width={12}>
                         <div>
-                            <Input placeholder="search in job advertisements" size="large" fluid icon="search" onChange={(event) => handleSearch(event)} />
+                            <Card fluid color="blue">
+                                <Input placeholder="search in job advertisements" size="large" fluid icon="search" onChange={(event) => handleSearch(event)} />
+                            </Card>
                         </div>
                         <br />
                         <Card.Group>
@@ -77,11 +79,11 @@ export default function JobAdvertisements() {
                                         </Card.Content>
                                         <Card.Content extra>
                                             <div className='ui two buttons'>
-                                                <Button basic color='blue' as={NavLink} to={{pathname:"jobAdvertisement/detail/" , state:{advertisementId:advertisement.id} }}>
+                                                <Button inverted color='blue' as={NavLink} to={{ pathname: "jobAdvertisement/detail/", state: { advertisementId: advertisement.id } }}>
                                                     Detaylar
                                                 </Button>
                                                 {/* TODO: Login işlemlerinden sonra user id bilgisini login yapan kişininkiyle değiştir. */}
-                                                <Button onClick={() => { addFavorites(advertisement.id, 26) }} basic color='orange'>
+                                                <Button onClick={() => { addFavorites(advertisement.id, 26) }} inverted color='orange'>
                                                     Favori
                                                 </Button>
                                             </div>

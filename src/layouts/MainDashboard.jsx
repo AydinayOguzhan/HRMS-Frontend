@@ -4,6 +4,8 @@ import { Route } from 'react-router'
 import AddJobAdvertisement from '../pages/AddJobAdvertisement'
 import AdminDashboard from './admin/AdminDashboard'
 import JobAdvertisementDetail from '../pages/JobAdvertisementDetail'
+import AddUserCoverLetter from '../pages/AddUserCoverLetter'
+import UserCv from '../pages/UserCv'
 
 export default function MainDashboard() {
     return (
@@ -15,6 +17,8 @@ export default function MainDashboard() {
                 <Route exact path="/jobadvertisements" component={JobAdvertisements} />
                 <Route exact path="/jobadvertisement/add" component={AddJobAdvertisement} />
                 <Route exact path="/jobadvertisement/detail" component={JobAdvertisementDetail} />
+                <Route exact path="/usercv" component={UserCv} />
+                <Route exact path="/usercv/addusercoverletter" component={AddUserCoverLetter} />
             {/* </Container> */}
         </div>
     )

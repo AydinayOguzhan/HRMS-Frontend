@@ -42,8 +42,8 @@ export default function VerifyJobAdvertisements() {
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='ui two buttons'>
-                                    {advertisement.approved?<Button onClick={()=> {verifyJobAdvertisement(advertisement.id,false)}} basic color='red'>Onayı Kaldır</Button>
-                                    :<Button onClick={()=> {verifyJobAdvertisement(advertisement.id,true)}} basic color='green'>Onayla</Button>}
+                                    {advertisement.approved?<Button onClick={()=> {verifyJobAdvertisement(advertisement.id,false)}}  inverted color='red'>Onayı Kaldır</Button>
+                                    :<Button onClick={()=> {verifyJobAdvertisement(advertisement.id,true)}}  inverted color='green'>Onayla</Button>}
                                 </div>
                             </Card.Content>
                         </Card>

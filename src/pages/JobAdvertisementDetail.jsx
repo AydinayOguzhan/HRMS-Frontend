@@ -17,7 +17,7 @@ export default function JobAdvertisementDetail({ }) {
         })
     }, [])
 
-    console.log(advertisement)
+    // console.log(advertisement)
 
     return (
         <div>
@@ -51,7 +51,7 @@ export default function JobAdvertisementDetail({ }) {
                                             <Table.Cell>{advertisement.phoneNumber}</Table.Cell>
                                         </Table.Row>
                                         <Table.Row>
-                                            <Table.Cell><Button basic color="blue">Firma Detayları</Button></Table.Cell>
+                                            <Table.Cell><Button inverted color="blue">Firma Detayları</Button></Table.Cell>
                                         </Table.Row>
                                     </Table.Body>
                                 </Table>
