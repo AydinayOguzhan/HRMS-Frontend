@@ -4,7 +4,7 @@ import UserCvsService from '../services/userCvsService'
 import LanguagesService from '../services/languagesService'
 import ProgrammingLanguagesService from '../services/programmingLanguagesService'
 import JobSeekersService from '../services/jobSeekersService'
-import { Card, Table, Image, Button } from 'semantic-ui-react'
+import { Card, Table, Image, Button, Grid, Icon } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 export default function UserCv() {
@@ -26,7 +26,7 @@ export default function UserCv() {
         const languagesService = new LanguagesService()
         const programmingLanguagesService = new ProgrammingLanguagesService()
         const jobSeekersService = new JobSeekersService()
-        jobSeekersService.getByUserId(userId).then((result) => {setUser(result.data.data)})
+        jobSeekersService.getByUserId(userId).then((result) => { setUser(result.data.data) })
         userCvsService.getUserCv(userId).then((result) => {
             setUserCv(result.data.data); setUserSchools(result.data.data.userSchools); setUserLanguages(result.data.data.userLanguages);
             setUserLinks(result.data.data.userLinks); setUserJobExperiences(result.data.data.userJobExperiences);
@@ -35,33 +35,61 @@ export default function UserCv() {
         languagesService.getAll().then((result) => { setLanguages(result.data.data) })
         programmingLanguagesService.getAll().then((result) => { setProgrammingLanguages(result.data.data) })
     }, [])
-    console.log(userCv)
+    // console.log(user)
     return (
         <div>
             <br />
             <Card.Group>
-                <Card fluid color="blue">
+                <Card color="blue">
+                    <Image src={userCv.userImage} />
                     <Card.Content>
-                        <Image src={userCv.userImage} floated="left" size='medium' circular verticalAlign="middle" />
                         <Card.Header>{user.firstName} {user.lastName}</Card.Header>
+                        <Card.Meta>{user.dateOfBirth}</Card.Meta>
                     </Card.Content>
+                    <Button color="blue"
+                        as={NavLink} to={{ pathname: "/usercv/adduserinformations", state: { userId: userId } }}
+                    >Bilgileri Değiştir</Button>
                 </Card>
 
                 <Card fluid color="blue">
-                    <Card.Content> 
-                        <Card.Header>Ön yazı</Card.Header>
+                    <Card.Content>
+                        <Card.Header>
+                            <Grid columns={3}>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <Button floated="left" size="small" inverted color="blue"
+                                            as={NavLink} to={{ pathname: "/usercv/addusercoverletter", state: { userId: userId } }}
+                                        ><Icon name='add' /> Ön Yazı Ekle/Güncelle</Button>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        Ön yazı
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Card.Header>
                     </Card.Content>
                     <Card.Content>
                         <Card.Description>{userCv.userCoverLetter}</Card.Description>
                     </Card.Content>
-                    <Card.Content><Button fluid inverted color="blue" 
-                        as={NavLink} to={{ pathname: "/usercv/addusercoverletter", state: {userId: userId} }}
-                    >Ön Yazı Ekle/Güncelle</Button></Card.Content>
+                    <Card.Content></Card.Content>
                 </Card>
 
                 <Card fluid color="blue">
                     <Card.Content>
-                        <Card.Header>İş tecrübeleri</Card.Header>
+                        <Card.Header>
+                            <Grid columns={3}>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <Button floated="left" size="small" inverted color="blue"
+                                            as={NavLink} to={{ pathname: "/usercv/adduserjobexperiences", state: { userId: userId } }}
+                                        ><Icon name='add' /> Tecrübe Ekle/Güncelle</Button>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        İş Tecrübeleri
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Card.Header>
                         <Table singleLine color="blue">
                             <Table.Header>
                                 <Table.Row>
@@ -89,7 +117,20 @@ export default function UserCv() {
 
                 <Card fluid color="blue">
                     <Card.Content>
-                        <Card.Header>Kullandığı Teknolojiler</Card.Header>
+                        <Card.Header>
+                            <Grid columns={3}>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <Button floated="left" size="small" inverted color="blue"
+                                            as={NavLink} to={{ pathname: "/usercv/adduserprogramminglanguages", state: { userId: userId } }}
+                                        ><Icon name='add' /> Teknoloji Ekle/Güncelle</Button>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        Kullandığı Teknolojiler
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Card.Header>
                         <Table singleLine color="blue">
                             <Table.Header>
                                 <Table.Row>
@@ -120,7 +161,21 @@ export default function UserCv() {
 
                 <Card fluid color="blue">
                     <Card.Content>
-                        <Card.Header>Okuduğu Okullar</Card.Header>
+                        <Card.Header>
+                            <Grid columns={3}>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <Button floated="left" size="small" inverted color="blue"
+                                            as={NavLink} to={{ pathname: "/usercv/adduserschools", state: { userId: userId } }}
+                                        ><Icon name='add' /> Okul Ekle/Güncelle</Button>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        Okuduğu Okullar
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+
+                        </Card.Header>
                         <Table singleLine color="blue">
                             <Table.Header>
                                 <Table.Row>
@@ -148,7 +203,20 @@ export default function UserCv() {
 
                 <Card fluid color="blue">
                     <Card.Content>
-                        <Card.Header>Bildiği diller</Card.Header>
+                        <Card.Header>
+                            <Grid columns={3}>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <Button floated="left" size="small" inverted color="blue"
+                                            as={NavLink} to={{ pathname: "/usercv/adduserlanguages", state: { userId: userId } }}
+                                        ><Icon name='add' /> Dil Ekle/Güncelle</Button>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        Bildiği Diller
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Card.Header>
                         <Table singleLine color="blue">
                             <Table.Header>
                                 <Table.Row>
@@ -178,7 +246,20 @@ export default function UserCv() {
 
                 <Card fluid color="blue">
                     <Card.Content>
-                        <Card.Header>Linkler</Card.Header>
+                        <Card.Header>
+                            <Grid columns={3}>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <Button floated="left" size="small" inverted color="blue"
+                                            as={NavLink} to={{ pathname: "/usercv/adduserlinks", state: { userId: userId } }}
+                                        ><Icon name='add' /> Link Ekle/Güncelle</Button>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        Linkler
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Card.Header>
                         <Table singleLine color="blue">
                             <Table.Body>
                                 {

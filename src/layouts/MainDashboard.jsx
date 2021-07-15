@@ -6,6 +6,12 @@ import AdminDashboard from './admin/AdminDashboard'
 import JobAdvertisementDetail from '../pages/JobAdvertisementDetail'
 import AddUserCoverLetter from '../pages/AddUserCoverLetter'
 import UserCv from '../pages/UserCv'
+import AddUserInformations from '../pages/AddUserInformations'
+import AddUserJobExperiences from '../pages/AddUserJobExperiences'
+import AddUserProgrammingLanguages from '../pages/AddUserProgrammingLanguages'
+import AddUserSchools from '../pages/AddUserSchools'
+import AddUserLanguage from '../pages/AddUserLanguage'
+import AddUserLink from '../pages/AddUserLink'
 
 export default function MainDashboard() {
     return (
@@ -19,6 +25,12 @@ export default function MainDashboard() {
                 <Route exact path="/jobadvertisement/detail" component={JobAdvertisementDetail} />
                 <Route exact path="/usercv" component={UserCv} />
                 <Route exact path="/usercv/addusercoverletter" component={AddUserCoverLetter} />
+                <Route exact path="/usercv/adduserinformations" component={AddUserInformations} />
+                <Route exact path="/usercv/adduserjobexperiences" component={AddUserJobExperiences} />
+                <Route exact path="/usercv/adduserprogramminglanguages" component={AddUserProgrammingLanguages} />
+                <Route exact path="/usercv/adduserschools" component={AddUserSchools} />
+                <Route exact path="/usercv/adduserlanguages" component={AddUserLanguage} />
+                <Route exact path="/usercv/adduserlinks" component={AddUserLink} />
             {/* </Container> */}
         </div>
     )
