@@ -36,7 +36,7 @@ export default function AddUserCoverLetter() {
     useEffect(() => {
         let userCoverLettersService = new UserCoverLettersService()
         userCoverLettersService.getByUserId(userId).then((result) => {setUserCoverLetter(result.data.data)})
-    }, [])
+    }, [userId])
 
     return (
         <div>

@@ -15,9 +15,8 @@ export default function JobAdvertisementDetail({ }) {
         jobAdvertisementService.getDetailById(advertisementId).then((result) => {
             setAdvertisement(result.data.data)
         })
-    }, [])
+    }, [advertisementId])
 
-    // console.log(advertisement)
 
     return (
         <div>

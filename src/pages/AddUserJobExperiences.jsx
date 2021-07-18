@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import KodlamaIoTextInput from '../utilities/customFormControls/KodlamaIoTextInput';
 import KodlamaIoDateInput from '../utilities/customFormControls/KodlamaIoDateInput';
 import { Formik, Form } from 'formik';
-import { Button, Table, Grid, Icon, Card } from 'semantic-ui-react'
+import { Button, Table, Card } from 'semantic-ui-react'
 
 export default function AddUserJobExperiences() {
     var dateFormat = require("dateformat");
@@ -52,8 +52,7 @@ export default function AddUserJobExperiences() {
         const userJobExperiencesService = new UserJobExperiencesService()
         userJobExperiencesService.getByUserId(userId).then((result) => { setUserJobExperiences(result.data.data); })
         setExperienceSetted(false)
-    }, [experienceSetted])
-    console.log(userJobExperiences)
+    }, [experienceSetted, userId])
 
     return (
         <div>

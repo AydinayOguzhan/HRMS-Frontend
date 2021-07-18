@@ -19,6 +19,10 @@ export default class JobAdvertisementService{
         return axios.get("http://localhost:8080/api/jobadvertisements/getdetailbyid?id=" + jobAdvertisementId)
     }
 
+    getAllWithDeadline(deadline){
+        return axios.get("http://localhost:8080/api/jobadvertisements/getallactiveandisapprovedwithdeadline?deadline=" + deadline)
+    }
+
     add(props){
         axios({
             method:"post",

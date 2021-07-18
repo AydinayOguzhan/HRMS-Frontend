@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import * as Yup from "yup";
 import KodlamaIoTextInput from '../utilities/customFormControls/KodlamaIoTextInput';
 import { Formik, Form } from 'formik';
-import { Button, Table, Grid, Icon, Card } from 'semantic-ui-react'
+import { Button, Table, Card } from 'semantic-ui-react'
 import UserLinksService from '../services/userLinksService';
 
 export default function AddUserLink() {
@@ -47,8 +47,7 @@ export default function AddUserLink() {
         const userLinksService = new UserLinksService()
         userLinksService.getByUserId(userId).then((result) => { setUserLinks(result.data.data); })
         setUserLinkSetted(false)
-    }, [userLinkSetted])
-    console.log(userLinks)
+    }, [userLinkSetted, userId])
 
     return (
         <div>

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import JobSeekersService from '../services/jobSeekersService'
 import { Formik, Form } from 'formik';
-import { Button, FormField, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image } from 'semantic-ui-react'
 import * as Yup from "yup";
 import { useHistory } from 'react-router';
 import KodlamaIoTextInput from '../utilities/customFormControls/KodlamaIoTextInput';
@@ -67,7 +67,7 @@ export default function AddUserInformations() {
         const imageUploadService = new ImageUploadService()
         jobSeekersService.getByUserId(userId).then((result) => { setUser(result.data.data) })
         imageUploadService.getByUserId(userId).then((result) => { setUserImage(result.data.data) })
-    }, [user])
+    }, [user, userId])
     // console.log(user)
     return (
         <div>

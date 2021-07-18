@@ -1,13 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { Dropdown, Menu,Image } from 'semantic-ui-react'
+import ImageUploadService from '../services/imageUploadService'
 
 export default function SignedIn({signOut}) {
+    const [userImage, setUserImage] = useState()
+    const userId = 31
+
+    useEffect(() => {
+        const imageUploadService = new ImageUploadService()
+        imageUploadService.getByUserId(userId).then((response) => {setUserImage(response.data.data)})
+    }, [userImage])
+
     return (
         <div>
             <Menu.Item>
-                {/* TODO: Fotoğrafı userImageController dan al */}
-                <Image avatar spaced="right" src="https://pbs.twimg.com/profile_images/1280736129298370560/lpDLJp3B.jpg"/>
+                <Image avatar spaced="right" src={userImage}/>
                 <Dropdown pointing="top left" text="Oğuzhan">
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} to="/usercv" text="Bilgilerim" icon="info"></Dropdown.Item>

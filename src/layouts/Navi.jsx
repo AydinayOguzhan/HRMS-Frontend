@@ -4,8 +4,10 @@ import { Container, Menu } from 'semantic-ui-react'
 import SignedIn from './SignedIn'
 import SignedOut from './SignedOut'
 
+
 export default function Navi() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
+
     function handleSignOut() {
         setIsAuthenticated(false)
     }

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import * as Yup from "yup";
 import KodlamaIoSelect from "../utilities/customFormControls/KodlamaIoSelect"
 import { Formik, Form } from 'formik';
-import { Button, Table, Grid, Icon, Card } from 'semantic-ui-react'
+import { Button, Table, Card } from 'semantic-ui-react'
 import UserLanguagesService from '../services/userLanguagesService';
 import LanguagesService from '../services/languagesService';
 
@@ -55,8 +55,7 @@ export default function AddUserLanguage() {
         languagesService.getAll().then((result) => { setLanguages(result.data.data) })
         userLanguagesService.getByUserId(userId).then((result) => { setUserLanguages(result.data.data); })
         setUserLanguageSetted(false)
-    }, [userLanguageSetted])
-    console.log(userLanguages)
+    }, [userLanguageSetted, userId])
 
     return (
         <div>

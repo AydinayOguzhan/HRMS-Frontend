@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import * as Yup from "yup";
 import KodlamaIoSelect from "../utilities/customFormControls/KodlamaIoSelect"
 import { Formik, Form } from 'formik';
-import { Button, Table, Grid, Icon, Card } from 'semantic-ui-react'
+import { Button, Table, Card } from 'semantic-ui-react'
 import UserProgrammingLanguagesService from '../services/userProgrammingLanguagesService';
 import ProgrammingLanguagesService from '../services/programmingLanguagesService';
 
@@ -50,8 +50,7 @@ export default function AddUserProgrammingLanguages() {
         programmingLanguagesService.getAll().then((result) => { setProgrammingLanguages(result.data.data) })
         userProgrammingLanguagesService.getByUserId(userId).then((result) => { setUserProgrammingLanguages(result.data.data); })
         setuserProgrammingLanguageSett(false)
-    }, [userProgrammingLanguageSetted])
-    console.log(userProgrammingLanguages)
+    }, [userProgrammingLanguageSetted, userId])
 
     return (
         <div>

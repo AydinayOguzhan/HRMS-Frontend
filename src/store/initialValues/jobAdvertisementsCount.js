@@ -1,1 +1,1 @@
-export const jobAdvertisementsCount=12
+export const jobAdvertisementsCount=10

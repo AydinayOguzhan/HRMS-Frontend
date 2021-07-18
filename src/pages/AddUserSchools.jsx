@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router';
 import * as Yup from "yup";
 import { Formik, Form } from 'formik';
-import { Button, Table, Grid, Icon, Card } from 'semantic-ui-react'
+import { Button, Table, Card } from 'semantic-ui-react'
 import UserSchoolsService from '../services/userSchoolsService';
 import KodlamaIoTextInput from '../utilities/customFormControls/KodlamaIoTextInput';
 import KodlamaIoDateInput from '../utilities/customFormControls/KodlamaIoDateInput';
@@ -54,7 +54,7 @@ export default function AddUserSchools() {
         const userSchoolsService = new UserSchoolsService()
         userSchoolsService.getByUserId(userId).then((result) => { setUserSchools(result.data.data); })
         setUserSchoolSetted(false)
-    }, [userSchoolSetted])
+    }, [userSchoolSetted, userId])
     console.log(userSchools)
 
     return (

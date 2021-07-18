@@ -5,16 +5,16 @@ import JobAdvertisementService from '../services/jobAdvertisementService'
 import FavoritesService from '../services/favoritesService';
 import { toast } from "react-toastify";
 import { useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function JobAdvertisements() {
     const favoritesService = new FavoritesService()
     var dateFormat = require("dateformat");
-    const history = useHistory();
 
     const { jobAdvertisementsCount } = useSelector(state => state.jobAdvertisement)
+    const {jobAdvertisementsDeadline} = useSelector(state => state.jobAdvertisement)
 
-    const [activeJobAdvertisements, setActiveJobAdvertisements] = useState([])
+    const [activeJobAdvertisements, setActiveJobAdvertisements]= useState([])
     const [filteredData, setFilteredData] = useState([])
 
     const [totalPages, setTotalPages] = useState(5)
@@ -33,20 +33,30 @@ export default function JobAdvertisements() {
         let result = []
         result = activeJobAdvertisements.filter((data) => {
             return data.cityName.search(value) !== -1 || data.jobPositionName.search(value) !== -1 ||
-                data.companyName.search(value) !== -1
+                data.companyName.search(value) !== -1 
         })
         setFilteredData(result)
     }
 
+    function handleDeadline(advertisementService, deadline) {
+        if (deadline !== "") {
+            advertisementService.getAllWithDeadline(deadline).then((result) => setFilteredData(result.data.data))
+        }else{
+            setFilteredData(activeJobAdvertisements)
+        }
+    }
 
     useEffect(() => {
         let jobAdvertisementService = new JobAdvertisementService()
         jobAdvertisementService.getAllByPage(activePage, jobAdvertisementsCount).then(result => {
             setActiveJobAdvertisements(result.data.data);
             setFilteredData(result.data.data)
+            if (jobAdvertisementsDeadline !== "") {
+                handleDeadline(jobAdvertisementService, jobAdvertisementsDeadline.deadline)
+            }
         })
         jobAdvertisementService.getTotalPages(1, jobAdvertisementsCount).then(result => setTotalPages(result.data.data))
-    }, [jobAdvertisementsCount, activePage, totalPages])
+    }, [jobAdvertisementsCount, activePage, totalPages, jobAdvertisementsDeadline])
 
     return (
         <div>
