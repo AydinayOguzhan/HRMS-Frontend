@@ -12,9 +12,9 @@ export default function JobAdvertisements() {
     var dateFormat = require("dateformat");
 
     const { jobAdvertisementsCount } = useSelector(state => state.jobAdvertisement)
-    const {jobAdvertisementsDeadline} = useSelector(state => state.jobAdvertisement)
+    const { jobAdvertisementsDeadline } = useSelector(state => state.jobAdvertisement)
 
-    const [activeJobAdvertisements, setActiveJobAdvertisements]= useState([])
+    const [activeJobAdvertisements, setActiveJobAdvertisements] = useState([])
     const [filteredData, setFilteredData] = useState([])
 
     const [totalPages, setTotalPages] = useState(5)
@@ -33,15 +33,17 @@ export default function JobAdvertisements() {
         let result = []
         result = activeJobAdvertisements.filter((data) => {
             return data.cityName.search(value) !== -1 || data.jobPositionName.search(value) !== -1 ||
-                data.companyName.search(value) !== -1 
+                data.companyName.search(value) !== -1
         })
         setFilteredData(result)
     }
 
     function handleDeadline(advertisementService, deadline) {
         if (deadline !== "") {
-            advertisementService.getAllWithDeadline(deadline).then((result) => setFilteredData(result.data.data))
-        }else{
+            advertisementService.getAllWithDeadline(deadline).then((result) => {
+                setFilteredData(result.data.data)
+            })
+        } else {
             setFilteredData(activeJobAdvertisements)
         }
     }
@@ -49,14 +51,14 @@ export default function JobAdvertisements() {
     useEffect(() => {
         let jobAdvertisementService = new JobAdvertisementService()
         jobAdvertisementService.getAllByPage(activePage, jobAdvertisementsCount).then(result => {
-            setActiveJobAdvertisements(result.data.data);
             setFilteredData(result.data.data)
             if (jobAdvertisementsDeadline !== "") {
                 handleDeadline(jobAdvertisementService, jobAdvertisementsDeadline.deadline)
             }
         })
+        jobAdvertisementService.getAllDetail().then((result) => { setActiveJobAdvertisements(result.data.data);})
         jobAdvertisementService.getTotalPages(1, jobAdvertisementsCount).then(result => setTotalPages(result.data.data))
-    }, [jobAdvertisementsCount, activePage, totalPages, jobAdvertisementsDeadline])
+    }, [jobAdvertisementsCount, activePage, jobAdvertisementsDeadline])
 
     return (
         <div>
