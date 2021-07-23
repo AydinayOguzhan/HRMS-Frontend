@@ -6,7 +6,7 @@ export default class ImageUploadService {
     }
 
     add(userId, file) {
-        axios({
+        return axios({
             // headers: {"Content-Type":"multipart/form-data"},
             method: "post",
             url: "http://localhost:8080/api/imageupload/saveimage?userId=" + userId,

@@ -6,7 +6,7 @@ export default class UserJobExperiencesService{
     }
 
     add(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userjobexperiences/add",
             data: {
@@ -20,7 +20,7 @@ export default class UserJobExperiencesService{
     }
 
     delete(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userjobexperiences/delete",
             data: {

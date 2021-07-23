@@ -6,7 +6,7 @@ export default class UserLinksService{
     }
 
     add(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userlinks/add",
             data: {
@@ -17,7 +17,7 @@ export default class UserLinksService{
     }
 
     delete(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userlinks/delete",
             data: {

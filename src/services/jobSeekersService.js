@@ -6,7 +6,7 @@ export default class JobSeekersService{
     }
 
     add(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/jobseekers/add",
             data: {

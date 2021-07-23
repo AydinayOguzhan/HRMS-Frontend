@@ -6,7 +6,7 @@ export default class UserLanguagesService{
     }
 
     add(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userlanguages/add",
             data: {
@@ -18,7 +18,7 @@ export default class UserLanguagesService{
     }
 
     delete(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userlanguages/delete",
             data: {

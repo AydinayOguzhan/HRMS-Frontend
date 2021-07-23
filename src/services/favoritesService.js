@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default class FavoritesService{
     add(advertisementId, jobSeekerId){
-        axios({
+        return axios({
             method:"post",
             url:"http://localhost:8080/api/favorites/add",
             data:{
@@ -13,7 +13,7 @@ export default class FavoritesService{
     }
 
     delete(id,advertisementId, jobSeekerId){
-        axios({
+        return axios({
             method:"post",
             url:"http://localhost:8080/api/favorites/delete",
             data:{

@@ -6,7 +6,7 @@ export default class UserCoverLettersService{
     }
 
     update(userId,letter){
-        axios({
+        return axios({
             method:"post",
             url:"http://localhost:8080/api/usercoverletters/update",
             data:{

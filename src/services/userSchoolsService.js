@@ -6,7 +6,7 @@ export default class UserSchoolsService{
     }
 
     add(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userschools/add",
             data: {
@@ -20,7 +20,7 @@ export default class UserSchoolsService{
     }
 
     delete(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userschools/delete",
             data: {

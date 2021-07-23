@@ -6,7 +6,7 @@ export default class UserProgrammingLanguagesService{
     }
 
     add(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userprogramminglanguages/add",
             data: {
@@ -17,7 +17,7 @@ export default class UserProgrammingLanguagesService{
     }
 
     delete(params){
-        axios({
+        return axios({
             method: "post",
             url: "http://localhost:8080/api/userprogramminglanguages/delete",
             data: {
