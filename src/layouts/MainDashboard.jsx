@@ -12,6 +12,7 @@ import AddUserProgrammingLanguages from '../pages/AddUserProgrammingLanguages'
 import AddUserSchools from '../pages/AddUserSchools'
 import AddUserLanguage from '../pages/AddUserLanguage'
 import AddUserLink from '../pages/AddUserLink'
+import AddJobPositions from '../pages/AddJobPositions'
 
 export default function MainDashboard() {
     return (
@@ -31,6 +32,7 @@ export default function MainDashboard() {
                 <Route exact path="/usercv/adduserschools" component={AddUserSchools} />
                 <Route exact path="/usercv/adduserlanguages" component={AddUserLanguage} />
                 <Route exact path="/usercv/adduserlinks" component={AddUserLink} />
+                <Route exact path="/jobposition/add" component={AddJobPositions} />
             {/* </Container> */}
         </div>
     )

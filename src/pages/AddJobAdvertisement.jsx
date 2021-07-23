@@ -58,6 +58,7 @@ export default function AddJobAdvertisement() {
     return (
         <div>
             {/* <Container> */}
+            <br />
                 <h1>İş ilanı ekle</h1>
                 <Formik
                     initialValues={initialValues}
