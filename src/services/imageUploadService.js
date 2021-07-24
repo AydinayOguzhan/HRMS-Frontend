@@ -6,15 +6,19 @@ export default class ImageUploadService {
     }
 
     add(userId, file) {
+        const formData = new FormData()
+        formData.append("file",file)
         return axios({
-            // headers: {"Content-Type":"multipart/form-data"},
             method: "post",
             url: "http://localhost:8080/api/imageupload/saveimage?userId=" + userId,
-            data: file
+            data:formData
         })
-        // axios.post("http://localhost:8080/api/imageupload/saveimage?userId=" + userId,
-        //     file,{headers:{'Access-Control-Allow-Headers':"*",'Access-Control-Allow-Methods':"GET, POST, PUT, DELETE, OPTIONS"
-        //         ,"Content-Type": "multipart/form-data", "Access-Control-Allow-Origin":"*"}}
-        // 
+    }
+
+    delete(userId){
+        return axios({
+            method:"post",
+            url:"http://localhost:8080/api/imageupload/deleteimage?userId=" + userId
+        })
     }
 }

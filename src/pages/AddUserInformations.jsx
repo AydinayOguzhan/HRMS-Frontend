@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import JobSeekersService from '../services/jobSeekersService'
 import { Formik, Form } from 'formik';
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image, Dimmer, Loader, Segment } from 'semantic-ui-react'
 import * as Yup from "yup";
 import { useHistory } from 'react-router';
 import KodlamaIoTextInput from '../utilities/customFormControls/KodlamaIoTextInput';
 import KodlamaIoDateInput from '../utilities/customFormControls/KodlamaIoDateInput';
 import ImageUploadService from '../services/imageUploadService';
-
+import { toast } from "react-toastify";
 
 export default function AddUserInformations() {
     const location = useLocation()
@@ -18,6 +18,9 @@ export default function AddUserInformations() {
 
     const [userImage, setUserImage] = useState({})
     const [user, setUser] = useState({})
+    const maxImageSize = 5000000
+
+    const [upload, setUpload] = useState(false)
 
     const initialValues = {
         firstName: user.firstName,
@@ -27,7 +30,7 @@ export default function AddUserInformations() {
     };
 
     const imageInitialValues = {
-        file: userImage
+        file: ""
     }
 
     const validationSchema = Yup.object().shape({
@@ -37,26 +40,48 @@ export default function AddUserInformations() {
         dateOfBirth: Yup.date().required("Doğum tarihi alanı boş olamaz!")
     });
 
+    const imageValidationSchema = Yup.object().shape({
+
+    });
+
     function handleCancel() {
         history.push("/userCv")
     }
 
     function handleImageUpload(image) {
-        // let imageUploadService = new ImageUploadService()
-        let formData = new FormData()
-        formData.append("file", image, image.name)
-        console.log(formData.get("file"))
-        // imageUploadService.add(userId, formData.get("file"))
+        let imageUploadService = new ImageUploadService()
+        if (image.size >= maxImageSize) {
+            toast.error("Dosya boyutu 5 mb den büyük olamaz")
+        } else {
+            setUpload(true)
+            imageUploadService.add(userId, image).then((response) => {
+                if (response.data.success) {
+                    toast.success(response.data.message)
+                    setUpload(false)
+                } else {
+                    setUpload(false)
+                    toast.error(response.data.message)
+                }
+            })
+        }
     }
 
-    // const showFileToUpload = (e) => {
-    //     // console.log("files", e);
-    //     //then perform some requests to save these images
-    // };
+    function handleDeleteImage() {
+        let imageUploadService = new ImageUploadService()
+        setUpload(true)
+        imageUploadService.delete(userId).then((response) => {
+            if (response.data.success) {
+                toast.success(response.data.message)
+                setUpload(false)
+            } else {
+                toast.error(response.data.message)
+                setUpload(false)
+            }
+        })
+    }
 
     function handleUpdateUserInformations(params) {
         const jobSeekersService = new JobSeekersService()
-        console.log(params)
         params.userId = userId
         params.verified = user.verified
         jobSeekersService.add(params)
@@ -68,40 +93,46 @@ export default function AddUserInformations() {
         jobSeekersService.getByUserId(userId).then((result) => { setUser(result.data.data) })
         imageUploadService.getByUserId(userId).then((result) => { setUserImage(result.data.data) })
     }, [user, userId])
-    // console.log(user)
+
     return (
         <div>
             <br />
             <h1>Kişi bilgilerini değiştir</h1>
             <Card>
-                <Image src={userImage} floated="left" />
+                <Image src={userImage} />
             </Card>
 
             <Card>
                 <Formik
                     enableReinitialize
                     initialValues={imageInitialValues}
-                    validationSchema={validationSchema}
+                    validationSchema={imageValidationSchema}
                     onSubmit={(values) => {
                         handleImageUpload(values.files[0])
                     }}
                 >
-                    {({ setFieldValue, handleSubmit }) => (
-                        <Form encType="multipart/form-data" className="ui form">
+                    {({ setFieldValue }) => (
+                        <Form method="post" encType="multipart/form-data" className="ui form">
                             <input
                                 id="file"
                                 name="file"
                                 type="file"
-                                multiple={true}
+                                multiple={false}
                                 onChange={(e) => {
                                     setFieldValue("files", e.currentTarget.files);
                                 }}></input>
 
+                            {upload && <Segment>
+                                <Dimmer active={true} inverted>
+                                    <Loader />
+                                </Dimmer>
+                            </Segment>}
+
                             <Button style={{ marginTop: '0.7em' }} type="submit" fluid primary> Profil resmini güncelle </Button>
-                            <br />
                         </Form>
                     )}
                 </Formik>
+                <Button style={{ marginTop: '0.7em' }} onClick={() => { handleDeleteImage() }} color="red" fluid> Profil resmini sil </Button>
             </Card>
 
             <Formik
@@ -109,11 +140,10 @@ export default function AddUserInformations() {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
-                    // console.log(values)
                     handleUpdateUserInformations(values)
                 }}
             >
-                {({ setFieldValue, handleSubmit }) => (
+                {({ }) => (
                     <Form encType="multipart/form-data" className="ui form">
 
                         <KodlamaIoTextInput style={{ marginTop: '0.7em' }} name="firstName" placeholder="Ad" />
