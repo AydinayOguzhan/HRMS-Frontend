@@ -13,12 +13,16 @@ import AddUserSchools from '../pages/AddUserSchools'
 import AddUserLanguage from '../pages/AddUserLanguage'
 import AddUserLink from '../pages/AddUserLink'
 import AddJobPositions from '../pages/AddJobPositions'
+import HrmsInformation from '../pages/HrmsInformation'
+import VerifyJobAdvertisements from '../pages/VerifyJobAdvertisements'
+import EmployerInformations from '../pages/EmployerInformations'
 
 export default function MainDashboard() {
     return (
         <div>
             {/* <Container fluid className="main"> */}
-                <Route exact path="/admin/verifyjobadvertisement" component={AdminDashboard} />
+                <Route exact path="/admin/verifyjobadvertisement" component={VerifyJobAdvertisements} />
+                <Route exact path="/admin/hrmsinformation" component={HrmsInformation} />
 
                 <Route exact path="/" component={JobAdvertisements} />
                 <Route exact path="/jobadvertisements" component={JobAdvertisements} />
@@ -33,6 +37,7 @@ export default function MainDashboard() {
                 <Route exact path="/usercv/adduserlanguages" component={AddUserLanguage} />
                 <Route exact path="/usercv/adduserlinks" component={AddUserLink} />
                 <Route exact path="/jobposition/add" component={AddJobPositions} />
+                <Route exact path="/employerinformations" component={EmployerInformations} />
             {/* </Container> */}
         </div>
     )
