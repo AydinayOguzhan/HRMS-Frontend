@@ -1,10 +1,11 @@
 import axios from 'axios'
 
+const apiUrl = "http://localhost:8080/api/favorites"
 export default class FavoritesService{
     add(advertisementId, jobSeekerId){
         return axios({
             method:"post",
-            url:"http://localhost:8080/api/favorites/add",
+            url: apiUrl + "/add",
             data:{
                 advertisementId:advertisementId,
                 jobSeekerId:jobSeekerId
@@ -15,7 +16,7 @@ export default class FavoritesService{
     delete(id,advertisementId, jobSeekerId){
         return axios({
             method:"post",
-            url:"http://localhost:8080/api/favorites/delete",
+            url: apiUrl + "/delete",
             data:{
                 id:id,
                 advertisementId:advertisementId,

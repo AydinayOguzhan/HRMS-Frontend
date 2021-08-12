@@ -1,14 +1,15 @@
 import axios from "axios";
 
+const apiUrl = "http://localhost:8080/api/jobseekers"
 export default class JobSeekersService{
     getByUserId(userId){
-        return axios.get("http://localhost:8080/api/jobseekers/getbyuserid?userId=" + userId)
+        return axios.get( apiUrl + "/getbyuserid?userId=" + userId)
     }
 
     add(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/jobseekers/add",
+            url: apiUrl + "/add",
             data: {
                 dateOfBirth:params.dateOfBirth,
                 firstName:params.firstName,

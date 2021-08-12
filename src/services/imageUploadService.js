@@ -1,8 +1,9 @@
 import axios from "axios";
 
+const apiUrl = "http://localhost:8080/api/imageupload"
 export default class ImageUploadService {
     getByUserId(userId) {
-        return axios.get("http://localhost:8080/api/imageupload/getimagebyuserid?userId=" + userId)
+        return axios.get( apiUrl + "/getimagebyuserid?userId=" + userId)
     }
 
     add(userId, file) {
@@ -10,7 +11,7 @@ export default class ImageUploadService {
         formData.append("file",file)
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/imageupload/saveimage?userId=" + userId,
+            url: apiUrl + "/saveimage?userId=" + userId,
             data:formData
         })
     }
@@ -18,7 +19,7 @@ export default class ImageUploadService {
     delete(userId){
         return axios({
             method:"post",
-            url:"http://localhost:8080/api/imageupload/deleteimage?userId=" + userId
+            url: apiUrl + "/deleteimage?userId=" + userId
         })
     }
 }

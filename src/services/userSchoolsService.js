@@ -1,14 +1,15 @@
 import axios from 'axios'
 
+const apiUrl = "http://localhost:8080/api/userschools"
 export default class UserSchoolsService{
     getByUserId(userId){
-        return axios.get("http://localhost:8080/api/userschools/getbyuseridorderbygraduatedatedesc?userId=" + userId)
+        return axios.get( apiUrl + "/getbyuseridorderbygraduatedatedesc?userId=" + userId)
     }
 
     add(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userschools/add",
+            url: apiUrl + "/add",
             data: {
                 department:params.department,
                 graduateDate:params.graduateDate,
@@ -22,7 +23,7 @@ export default class UserSchoolsService{
     delete(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userschools/delete",
+            url: apiUrl + "/delete",
             data: {
                 id:params.id,
                 department:params.department,

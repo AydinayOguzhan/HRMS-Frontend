@@ -1,14 +1,15 @@
 import axios from 'axios'
 
+const apiUrl = "http://localhost:8080/api/jobpositions"
 export default class JobPositionService{
     getAllJobPositions(){
-        return axios.get("http://localhost:8080/api/jobpositions/getall")
+        return axios.get( apiUrl + "/getall")
     }
 
     add(props){
         return axios({
             method:"post",
-            url:"http://localhost:8080/api/jobpositions/add",
+            url: apiUrl + "/add",
             data:{
                name:props.name
             }
@@ -19,7 +20,7 @@ export default class JobPositionService{
     delete(props){
         return axios({
             method:"post",
-            url:"http://localhost:8080/api/jobpositions/delete",
+            url: apiUrl + "/delete",
             data:{
                 id:props.id,
                name:props.name

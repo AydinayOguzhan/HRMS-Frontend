@@ -1,14 +1,15 @@
 import axios from 'axios'
 
+const apiUrl = "http://localhost:8080/api/userlinks"
 export default class UserLinksService{
     getByUserId(userId){
-        return axios.get("http://localhost:8080/api/userlinks/getbyuserid?userId=" + userId)
+        return axios.get( apiUrl + "/getbyuserid?userId=" + userId)
     }
 
     add(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userlinks/add",
+            url: apiUrl + "/add",
             data: {
                 link:params.link,
                 userId:params.userId
@@ -19,7 +20,7 @@ export default class UserLinksService{
     delete(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userlinks/delete",
+            url: apiUrl + "/delete",
             data: {
                 id:params.id,
                 link:params.link,

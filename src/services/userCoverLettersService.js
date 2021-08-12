@@ -1,14 +1,15 @@
 import axios from "axios";
 
+const apiUrl = "http://localhost:8080/api/usercoverletters"
 export default class UserCoverLettersService{
     getByUserId(userId){
-        return axios.get("http://localhost:8080/api/usercoverletters/getbyuserid?userId=" + userId)
+        return axios.get( apiUrl + "/getbyuserid?userId=" + userId)
     }
 
     update(userId,letter){
         return axios({
             method:"post",
-            url:"http://localhost:8080/api/usercoverletters/update",
+            url: apiUrl + "/update",
             data:{
                 letter:letter,
                 userId:userId

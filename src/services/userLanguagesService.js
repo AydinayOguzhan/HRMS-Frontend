@@ -1,14 +1,15 @@
 import axios from 'axios'
 
+const apiUrl = "http://localhost:8080/api/userlanguages"
 export default class UserLanguagesService{
     getByUserId(userId){
-        return axios.get("http://localhost:8080/api/userlanguages/getbyuserid?userId=" + userId)
+        return axios.get( apiUrl + "/getbyuserid?userId=" + userId)
     }
 
     add(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userlanguages/add",
+            url: apiUrl + "/add",
             data: {
                 languageId:params.userLanguage,
                 level:params.level,
@@ -20,7 +21,7 @@ export default class UserLanguagesService{
     delete(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userlanguages/delete",
+            url: apiUrl + "/delete",
             data: {
                 id:params.id,
                 languageId:params.languageId,

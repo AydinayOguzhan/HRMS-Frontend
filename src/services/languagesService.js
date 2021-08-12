@@ -1,7 +1,8 @@
 import axios from "axios";
 
+const apiUrl = "http://localhost:8080/api/languages"
 export default class LanguagesService{
     getAll(){
-        return axios.get("http://localhost:8080/api/languages/getall")
+        return axios.get( apiUrl + "/getall")
     }
 }

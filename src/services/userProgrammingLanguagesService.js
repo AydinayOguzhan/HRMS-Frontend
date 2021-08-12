@@ -1,14 +1,15 @@
 import axios from 'axios'
 
+const apiUrl = "http://localhost:8080/api/userprogramminglanguages"
 export default class UserProgrammingLanguagesService{
     getByUserId(userId){
-        return axios.get("http://localhost:8080/api/userprogramminglanguages/getbyuserid?userId=" + userId)
+        return axios.get( apiUrl + "/getbyuserid?userId=" + userId)
     }
 
     add(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userprogramminglanguages/add",
+            url: apiUrl + "/add",
             data: {
                 programmingLanguageId:params.programmingLanguage,
                 userId:params.userId
@@ -19,7 +20,7 @@ export default class UserProgrammingLanguagesService{
     delete(params){
         return axios({
             method: "post",
-            url: "http://localhost:8080/api/userprogramminglanguages/delete",
+            url: apiUrl + "/delete",
             data: {
                 id:params.id,
                 programmingLanguageId:params.programmingLanguage,
