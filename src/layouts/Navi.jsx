@@ -26,6 +26,8 @@ export default function Navi() {
 
                     <Menu.Item as={NavLink} to="/jobposition/add">İş pozisyonu ekle</Menu.Item>
 
+                    <Menu.Item as={NavLink} to="/admin/approveemployerdataupdate">İş veren güncelleme onayla</Menu.Item>
+
                     <Menu.Menu position='right'>
                         {isAuthenticated?<SignedIn signOut={handleSignOut}/>:<SignedOut signIn={handleSignIn}/>}   
                     </Menu.Menu>

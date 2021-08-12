@@ -16,6 +16,7 @@ import AddJobPositions from '../pages/AddJobPositions'
 import HrmsInformation from '../pages/HrmsInformation'
 import VerifyJobAdvertisements from '../pages/VerifyJobAdvertisements'
 import EmployerInformations from '../pages/EmployerInformations'
+import ApproveEmployerDataUpdate from '../pages/ApproveEmployerDataUpdate'
 
 export default function MainDashboard() {
     return (
@@ -23,6 +24,7 @@ export default function MainDashboard() {
             {/* <Container fluid className="main"> */}
                 <Route exact path="/admin/verifyjobadvertisement" component={VerifyJobAdvertisements} />
                 <Route exact path="/admin/hrmsinformation" component={HrmsInformation} />
+                <Route exact path="/admin/approveemployerdataupdate" component={ApproveEmployerDataUpdate} />
 
                 <Route exact path="/" component={JobAdvertisements} />
                 <Route exact path="/jobadvertisements" component={JobAdvertisements} />

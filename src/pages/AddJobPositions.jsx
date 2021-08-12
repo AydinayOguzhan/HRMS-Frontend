@@ -84,7 +84,7 @@ export default function AddJobPositions() {
                         </Table.Header>
                         <Table.Body>
                             {
-                                positions.map(position => (
+                                positions.map(position => ( 
                                     <Table.Row key={position.id}>
                                         {
                                             <Table.Cell>{position.name}</Table.Cell>

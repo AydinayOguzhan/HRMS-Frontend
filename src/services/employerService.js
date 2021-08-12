@@ -19,4 +19,20 @@ export default class EmployerService{
             }
         })
     }
+
+    updatePermanently(params){
+        return axios({
+            method:"post",
+            url:"http://localhost:8080/api/employers/updatepermanently",
+            data:{
+                userId:params.userId,
+                approved:params.approved,
+                companyName:params.companyName,
+                mailVerified:params.mailVerified,
+                phoneNumber:params.phoneNumber,
+                website:params.website
+            }
+        })
+    }
+
 }

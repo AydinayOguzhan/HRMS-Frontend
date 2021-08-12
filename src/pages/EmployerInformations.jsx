@@ -46,6 +46,7 @@ export default function EmployerInformations() {
         history.push("/")
     }
 
+    //Değişen bilgiye göre componenti yenile
     useEffect(() => {
         const employerService = new EmployerService()
         employerService.getByUserId(userId).then((response) => { setEmployer(response.data.data) })
